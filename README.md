@@ -1,5 +1,7 @@
 d3xquery
 ===========
+### This is a work in progress. 
+
 A d3js library for interacting with TEI relationships and building dynamic d3js visualizations. Created for Syriaca.org [http://syriaca.org/]. Tested in eXist v3.5. 
 
 Javascript library is a branch of https://github.com/ktym/d3sparql with modifications and additions. 
