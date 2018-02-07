@@ -37,7 +37,7 @@ Relationships are expected to look like this:
 <relation xmlns="http://www.tei-c.org/ns/1.0" ana="epistolary" ref="syriaca:EpistolaryReferenceTo" active="http://syriaca.org/person/51 http://syriaca.org/person/2531" passive="http://syriaca.org/person/3041"/>
 ```
 
-Other formats may work but have not been tested. The queries will look for any tei:relation, and will tokenize the values of the @active, @passive, and @mutual attributes, if your ids have spaces, this will cause an issue.  
+Other formats may work but have not been tested. The queries will look for any tei:relation, and will tokenize the values of the @active, @passive, and @mutual attributes, if your ids have spaces, this will cause an issue.  If you use tei:relation/@name instead of tei:relation/@ref you can change the relationships.xql and the list-relationships.xql queries. 
   
 ### Usage
  
