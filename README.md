@@ -42,7 +42,7 @@ Other formats may work but have not been tested. The queries will look for any t
 ### Usage
  
 Add folders to an eXist application, change the 
-<input type="hidden" name="format" id="collection" value="/db/apps/srophe-data/data/spear"/> in index.html to point to your data collection.
+```<input type="hidden" name="format" id="collection" value="/db/apps/srophe-data/data/spear"/>``` in index.html to point to your data collection.
 
 Run queries, enjoy your visualizations.  
  
