@@ -63,7 +63,8 @@ declare function local:format-tree-types($relationships){
             <children>
                 {
                     for $r in $relationships
-                    group by $type := $r/@ref
+                    let $group := if($r/@ref) then $r/@ref else $r/@name
+                    group by $type := $group
                     order by count($r) descending
                     return 
                         <json:value>

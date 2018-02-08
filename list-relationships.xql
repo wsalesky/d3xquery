@@ -15,8 +15,8 @@ declare variable $collection {
     };
 
 <list>{
-for $r in distinct-values(for $r in collection($collection)//tei:relation return $r/@ref)
-return 
-    <option label="{if(contains($r,':')) then substring-after($r,':') else $r}" value="{$r}"/>
-    }
+    for $r in distinct-values(for $r in collection($collection)//tei:relation return $r/@ref)
+    return 
+        <option label="{if(contains($r,':')) then substring-after($r,':') else $r}" value="{$r}"/>
+        }
 </list>
