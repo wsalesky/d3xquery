@@ -1,7 +1,6 @@
 xquery version "3.0";
 
-
-import module namespace functx="http://www.functx.com";
+import module namespace d3xquery="http://syriaca.org/d3xquery" at "d3xquery.xqm";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace json="http://www.json.org";
 
@@ -9,14 +8,22 @@ declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare option output:method "json";
 declare option output:media-type "application/json";
 
-declare variable $collection {
-    if(request:get-parameter('collection', '') != '') then string(request:get-parameter('collection', ''))
-    else '/db/apps/srophe-data/data/spear'
-    };
+declare variable $record {request:get-parameter('recordID', '')};
+declare variable $collectionPath {request:get-parameter('collection', '')};
 
-<list>{
-    for $r in distinct-values(for $r in collection($collection)//tei:relation return $r/@ref)
-    return 
-        <option label="{if(contains($r,':')) then substring-after($r,':') else $r}" value="{$r}"/>
-        }
-</list>
+(: Allows Syriaca.org to pass in a collection or a record. Defaults to SPEAR if no parameters are passed. :)
+let $data :=
+            (: Return a collection:)
+            if($collectionPath != '') then 
+                collection(string($collectionPath))
+            (: Return a single TEI record:)    
+             else if($record != '') then
+                    if(contains($record,'/spear/')) then 
+                        let $rec := collection('/db/apps/srophe-data/data/spear')//tei:div[@uri = $record]
+                        let $teiHeader := root($rec)//tei:teiHeader
+                        return 
+                            <tei:TEI xmlns="http://www.tei-c.org/ns/1.0">{($teiHeader,$rec)}</tei:TEI>
+                    else     
+                        collection('/db/apps/srophe-data/data/')/tei:TEI[.//tei:idno[@type='URI'][. = concat($record,'/tei')]][1] 
+             else collection('/db/apps/srophe-data/data/spear')    
+return d3xquery:list-relationship($data)

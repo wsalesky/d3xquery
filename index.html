@@ -113,11 +113,19 @@
             <form class="form-inline" id="RDF" action="relationships.xql">
                 <div class="input-append">
                     <div class="form-group" style="display:block; width:80%">
-                        <label for="id">Record ID:  </label>
+                        <label for="id">Entity ID:  </label>
                         <input type="text" name="id" id="id" size="50" placeholder="ex: http://syriaca.org/person/51"/>
-                        <hint style="font-size:small;font-style:italic;"> *Use to get relationships for specific record. </hint>
+                        <hint style="font-size:small;font-style:italic;"> *Use to get relationships for specific TEI entity . </hint>
                         <br/>
                     </div>
+                    <!--
+                    <div class="form-group" style="display:block; width:80%">
+                        <label for="id">Record ID:  </label>
+                        <input type="text" name="recordID" id="recordID" size="50" placeholder="ex: http://syriaca.org/person/51"/>
+                        <hint style="font-size:small;font-style:italic;"> * Use to get all the relationships in a specified TEI record. </hint>
+                        <br/>
+                    </div>
+                    -->
                     <div class="form-group">
                         <label for="relationship">Relationship Type:  </label>
                         <select id="relationship" name="relationship">
@@ -140,7 +148,7 @@
                             <option id="json">JSON</option>
                         </select>         
                         <input type="hidden" name="format" id="format" value="json"/>
-                        <input type="hidden" name="format" id="collection" value="/db/apps/srophe-data/data/spear"/>
+                        <input type="hidden" name="collection" id="collection" value="/db/apps/srophe-data/data/spear"/>
                         <button class="btn btn-default" type="button" id="query">Query</button>
                         <!--
                         <button class="btn btn-default" type="button" id="hide" onclick="toggle()">
